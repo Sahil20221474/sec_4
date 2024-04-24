@@ -1,0 +1,297 @@
+QUESTION-1.
+
+def split_join_example():
+    # Example of using split and join methods
+    sentence = "This is a sample sentence"
+    
+    # Split the sentence into words
+    words = sentence.split()
+    print("Splitting the sentence:", words)
+    
+    # Join the words back into a sentence using a different separator
+    new_sentence = " ".join(words)
+    print("Joining the words back :", new_sentence)
+
+
+def birthday_tracer():
+    # Dictionary containing names and birthdays
+    birthdays = {
+        "Alice": "April 15",
+        "Bob": "June 20",
+        "Charlie": "December 25",
+        "David": "March 10",
+        "Eve": "May 5"
+    }
+    
+    # Asking user for a name to trace the birthday
+    name = input("Whose birthday would you like to trace? \n")
+
+    # Checking if the name exists in the dictionary
+    if name in birthdays:
+        print(f"{name}'s birthday is on {birthdays[name]}.")
+    else:
+        print("Sorry, we don't have birthday information for that person.")
+
+
+# Run the examples
+split_join_example()
+birthday_tracer()
+
+
+QUESTION-2.
+
+
+# Define a function 'test' that takes two lists, 'keys' and 'values', and combines them into a dictionary.
+def test(keys, values):
+    # Use the 'zip' function to pair elements from 'keys' and 'values' lists, and then convert the result into a dictionary.
+    return dict(zip(keys, values))
+
+# Create two lists, 'l1' and 'l2', containing keys and values, respectively.
+l1 = ['a', 'b', 'c', 'd', 'e', 'f']
+l2 = [1, 2, 3, 4, 5, 6, 7]
+
+# Print the original lists.
+print("Original lists:")
+print(l1)
+print(l2)
+
+# Call the 'test' function to combine the values of the two lists into a dictionary.
+print("\nCombine the values of the said two lists into a dictionary:")
+print(test(l1, l2))
+
+
+QUESTION-3.
+
+
+def letterFrequency(fileName, letter):
+	# open file in read mode
+	file = open(fileName, 'r')
+
+	# store content of the file in a variable
+	text = file.read()
+
+	# using count()
+	return text.count(letter)
+
+
+# call the function and display the letter count
+print(letterFrequency('gfg.txt', 'g'))
+
+
+QUESTION-4.
+
+
+filename = input("Enter the file name: ")
+file_extension = filename.split('.')[-1]
+
+try:
+    with open(filename, "r") as file:
+        text = file.read()
+        freq = {}
+        for char in text:
+            freq[char] = freq.get(char, 0) + 1
+        
+        print("Character frequency:", freq)
+        
+        if file_extension == "py":
+            print("It's a Python program file")
+        elif file_extension == "c":
+            print("It's a C program file")
+        else:
+            print("It's a text file")
+except FileNotFoundError:
+    print("File not found")
+
+
+QUESTION-5.
+
+
+def print_lines_in_reverse(file_path):
+    """
+    Print each line of a file in reverse order.
+
+    Args:
+    file_path (str): Path to the file.
+    """
+    try:
+        with open(file_path, 'r') as file:
+            # Read each line of the file
+            lines = file.readlines()
+
+            # Iterate over each line in reverse order
+            for line in reversed(lines):
+                # Strip newline character and print the reversed line
+                print(line.rstrip()[::-1])
+    except FileNotFoundError:
+        print("File not found.")
+    except Exception as e:
+        print("An error occurred:", e)
+
+
+def main():
+    # Prompt the user to enter the path of the file
+    file_path = input("Enter the path of the file: ")
+
+    # Print each line of the file in reverse order
+    print_lines_in_reverse(file_path)
+
+
+if __name__ == "__main__":
+    main()
+
+
+QUESTION-6.
+
+
+def count_chars_words_lines(file_path):
+    """
+    Count the number of characters, words, and lines in a given file.
+
+    Args:
+    file_path (str): Path to the file.
+
+    Returns:
+    tuple: A tuple containing the number of characters, words, and lines respectively.
+    """
+    char_count = 0
+    word_count = 0
+    line_count = 0
+    
+    try:
+        with open(file_path, 'r') as file:
+            for line in file:
+                # Increment line count
+                line_count += 1
+                
+                # Split the line into words
+                words = line.split()
+                
+                # Increment word count
+                word_count += len(words)
+                
+                # Increment character count
+                char_count += sum(len(word) for word in words)
+                
+    except FileNotFoundError:
+        print("File not found.")
+    except Exception as e:
+        print("An error occurred:", e)
+    
+    return char_count, word_count, line_count
+
+
+def main():
+    file_path = input("Enter the path of the file: ")
+    char_count, word_count, line_count = count_chars_words_lines(file_path)
+    print(f"Number of characters: {char_count}")
+    print(f"Number of words: {word_count}")
+    print(f"Number of lines: {line_count}")
+
+
+if __name__ == "__main__":
+    main()
+
+
+QUESTION-7.
+
+
+# Python program to print 
+# mean of elements 
+
+# list of elements to calculate mean 
+n_num = [1, 2, 3, 4, 5, 6, 3, 8, 7, 5, 5, 1, 5, 1, 1, 4, 2, 3] 
+n = len(n_num) 
+
+get_sum = sum(n_num) 
+mean = get_sum / n 
+
+print("Mean " + str(mean)) 
+
+# Python program to print 
+# median of elements 
+
+# list of elements to calculate median 
+
+n_num.sort() 
+
+if n % 2 == 0: 
+	median1 = n_num[n//2] 
+	median2 = n_num[n//2 - 1] 
+	median = (median1 + median2)/2
+else: 
+	median = n_num[n//2] 
+print("Median is: " + str(median)) 
+
+# Python program to print 
+# mode of elements 
+from collections import Counter 
+
+# list of elements to calculate mode 
+
+
+data = Counter(n_num) 
+get_mode = dict(data) 
+mode = [k for k, v in get_mode.items() if v == max(list(data.values()))] 
+
+if len(mode) == n: 
+	get_mode = "No mode found"
+else: 
+	get_mode = "Mode is / are: " + ', '.join(map(str, mode)) 
+	
+print(get_mode) 
+
+
+QUESTION-8.
+
+
+def nearly_equal(str1,str2):
+ count=0
+ i=j=0
+ while(i<len(str1) and j<len(str2)):
+  if(str1[i]!=str2[j]):
+   count=count+1
+  if(len(str1)>len(str2)):
+   i=i+1
+  elif(len(str1)==len(str2)):
+    pass
+  else:
+    i=i-1
+  if(count>1):
+    return False
+  i=i+1
+  j=j+1
+  if(count<2):
+    return True
+str1=input("Enter first string::\n")
+str2=input("Enter second string::\n")
+boolean=nearly_equal(str1,str2)
+if(boolean):
+  print("Strings are nearly equal.")
+else:
+  print("Strings are not equal.")
+nearly_equal(str1,str2)
+
+
+QUESTION-10
+
+
+def dups(LIST):
+
+    appeared = set()
+    
+   
+    duplicates = []
+
+    for item in LIST:
+       
+        if item in appeared:
+            duplicates.append(item)
+        else:
+            appeared.add(item)  
+    return duplicates
+
+
+# Example usage:
+my_list = [1, 2, 3, 4, 2, 5, 6, 3, 7, 8, 4, 9, 9, 3]
+print("Duplicates in the list:", dups(my_list))
+
